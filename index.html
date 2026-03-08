@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchestra — Seu Gêmeo Digital</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Outfit:wght@300;400;500&family=Unbounded:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="dark-mode">
+    
+    <!-- Loader -->
+    <div id="loader">
+        <div class="loader-content">
+            <div class="loader-brand">ORCHESTRA</div>
+            <div id="loader-percent">0%</div>
+            <div id="loader-bar-wrap"><div id="loader-bar"></div></div>
+        </div>
+    </div>
+
+    <!-- Fixed Header -->
+    <header class="site-header">
+        <nav>
+            <div class="logo">ORCHESTRA</div>
+            <div class="header-links">
+                <a href="#about">MANIFESTO</a>
+                <a href="#features" class="btn-outline">ATIVAR</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Canvas Wrapper (Fixed, Right 2/3) -->
+    <div class="canvas-wrap">
+        <canvas id="canvas"></canvas>
+        <!-- Gradient overlay to blend left side smoothly to black -->
+        <div class="canvas-edge-blend"></div>
+        <div id="dark-overlay"></div>
+    </div>
+
+    <!-- Scroll Container for content (Left 1/3) -->
+    <main id="scroll-container">
+        
+        <!-- Hero Section -->
+        <section class="hero-standalone align-left scroll-section" data-animation="fade-up" data-enter="0" data-leave="10">
+            <div class="section-inner">
+                <span class="section-label">000 / A IA DEFINITIVA PARA SEU TRABALHO</span>
+                <h1 class="hero-heading">
+                    <span class="word">SEU</span>
+                    <span class="word">GÊMEO</span>
+                    <span class="word">DIGITAL</span>
+                    <span class="word">ESTÁ</span>
+                    <span class="word">PRONTO</span>
+                    <span class="word">PARA</span>
+                    <span class="word">TRABALHAR.</span>
+                </h1>
+                <p class="hero-tagline">
+                    O Orchestra não é um chatbot. É uma inteligência central que vive o seu contexto, aprende suas preferências e antecipa suas demandas antes mesmo de você abrir o computador.
+                </p>
+                <div>
+                    <button class="cta-button primary-cta">ATIVE SEU GÊMEO DIGITAL <span class="arrow">↗</span></button>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <span>SCROLL PARA INICIALIZAR</span>
+                <div class="line"></div>
+            </div>
+        </section>
+
+        <!-- Section 1 -->
+        <section class="scroll-section align-left" data-enter="10" data-leave="20" data-animation="slide-left">
+            <div class="section-inner">
+                <span class="section-label">001 / ORQUESTRAÇÃO INTEGRAL</span>
+                <h2 class="section-heading">DOMINE O CAOS</h2>
+                <h3 class="section-subheading">Maestria é sobre contexto.</h3>
+                <p class="section-body">
+                    O Orchestra não ignora o seu caos; ele o domina. Ao escutar ativamente cada reunião, ler cada mensagem interna e monitorar seu e-mail, o sistema organiza instantaneamente seu trabalho em uma estrutura lógica de tarefas e contextos. Assim, você não apenas visualiza o que precisa ser feito, mas detém o controle absoluto para executar cada item com o apoio da IA.                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> O Orchestra mapeia automaticamente reuniões, emails e textos de mensagens para extrair automaticamente tarefas pendentes, lembretes e datas críticas.
+                    Ele entende o contexto do seu trabalho, prioriza as tarefas e agenda reuniões de forma automática, garantindo que você nunca deixe uma tarefa de lado ou perca um prazo importante.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2 -->
+        <section class="scroll-section align-left" data-enter="20" data-leave="30" data-animation="scale-up">
+            <div class="section-inner">
+                <span class="section-label">002 / EVOLUÇÃO CONTÍNUA</span>
+                <h2 class="section-heading">HIPER-PERSONALIZAÇÃO DINÂMICA</h2>
+                <h3 class="section-subheading">Orchestra é movimento.</h3>
+                <p class="section-body">
+                    O Maestro aprende com cada rotina, cada decisão e cada e-mail seu. Quanto mais você trabalha, mais ele se torna, de fato, o seu Gêmeo Digital — absorvendo seu estilo, suas prioridades e sua voz.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> O Maestro aprende com cada ação sua, cada movimento do seu trabalho, sua habilidades, interesses e perfil. Ele mimetiza seu raciocínio e expande suas capacidades.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3 -->
+        <section class="scroll-section align-left" data-enter="30" data-leave="40" data-animation="fade-up">
+            <div class="section-inner">
+                <span class="section-label">003 / CLAREZA AO ACORDAR</span>
+                <h2 class="section-heading">DAILY BRIEFING</h2>
+                <h3 class="section-subheading">Seu dia, mastigado. </h3>
+                <p class="section-body">
+                    Orchestrações de agentes produzem um resumo executivo com o que realmente importa para o seu dia. Suas metas são priorizadas por uma IA que entende o peso de cada ação do seu dia, contextualizado com o seu trabalho e suas prioridades.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> Todos os dias ao acordar, seus emails pré-respondidos, follow-ups mapeados, tarefas priorizadas e pautas de reuniões já preparadas.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4 -->
+        <section class="scroll-section align-left" data-enter="40" data-leave="50" data-animation="slide-right">
+            <div class="section-inner">
+                <span class="section-label">004 / MEMÓRIA INFINITA</span>
+                <h2 class="section-heading">GESTÃO DE CONTEXTO ORGÂNICA</h2>
+                <h3 class="section-subheading">Conexão Total.</h3>
+                <p class="section-body">
+                    O Orchestra conecta os pontos entre aquela reunião de segunda e o e-mail crítico de quinta. Ele ouve o que você disse e lê o que você recebeu para criar uma base de conhecimento única: a sua.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> Ao perguntar sobre um projeto, ou executar uma tarefa, o Maestro cruza dados de todo o seu histórico de trabalho para te dar a resposta exata.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5 -->
+        <section class="scroll-section align-left" data-enter="50" data-leave="60" data-animation="stagger-up">
+            <div class="section-inner">
+                <span class="section-label">005 / AÇÕES ANTECIPADAS</span>
+                <h2 class="section-heading">EXECUÇÃO PROATIVA</h2>
+                <h3 class="section-subheading">Resolvido antes da sua ordem.</h3>
+                <p class="section-body">
+                     O Maestro antecipa a execução: agenda reuniões automaticamente com pautas estruturadas, realiza pesquisas profundas, cria documentos no Drive e prepara rascunhos de e-mails críticos exatamente como você escreveria.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> Antes mesmo que você peça, times de agents preparam documentos, respostas de emais, pesquisas e documentação para que esteja tudo pronto para você.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6 -->
+        <section class="scroll-section align-left" data-enter="60" data-leave="70" data-animation="clip-reveal">
+            <div class="section-inner">
+                <span class="section-label">006 / O HEARTBEAT DA GESTÃO</span>
+                <h2 class="section-heading">PULSAÇÃO E ROTINAS VIVAS</h2>
+                <h3 class="section-subheading">Sempre presente, sempre atento. </h3>
+                <p class="section-body">
+                    O Orchestra e flexível e se adpta a você. Você define as regras, ele executa os ciclos, garantindo que o trabalho avance de forma autônoma.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> Basta pedir que rotinas personalizadas envolvendo monitoramento de diversas plataformas são executadas e comunicadas para você em tempo real.
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7 -->
+        <section class="scroll-section align-left" data-enter="70" data-leave="80" data-animation="slide-left">
+            <div class="section-inner">e
+                <span class="section-label">007 / VISÃO MACRO</span>
+                <h2 class="section-heading">ANALYTICS EVOLUTIVO</h2>
+                <h3 class="section-subheading">Visibilidade total, do tático ao estratégico. </h3>
+                <p class="section-body">
+                    O Orchestra transforma o fluxo invisível em ativos de decisão. Ele agrega a inteligência de múltiplos Gêmeos para fundamentar o planejamento estratégico mais aprofundado que você já teve.
+                </p>
+                <div class="system-note">
+                    <span class="note-icon">&gt;</span> Geração automática de relatórios semestrais que consolidam a performance de todo o time, apontando gargalos reais para a diretoria com uma precisão inédita.
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section (Full Width, Overlaid) -->
+        <section class="scroll-section section-stats" data-enter="80" data-leave="90" data-animation="scale-up">
+            <div class="section-inner stats-container">
+                <span class="section-label" style="text-align: center; margin-bottom: 1rem;">008 / RESULTADOS</span>
+                <h2 class="section-heading" style="text-align: center;">O RETORNO DA ORCHESTRA</h2>
+                <ul class="stats-list">
+                    <li><span class="highlight">+15 horas</span> semanais economizadas em tarefas de suporte e microgestão.</li>
+                    <li><span class="highlight">100%</span> de visibilidade sobre o contexto de todas as reuniões e comunicações.</li>
+                    <li><span class="highlight">Zero tarefas perdidas:</span> Integração absoluta entre e-mail, agenda e execução.</li>
+                    <li><span class="highlight">ROI Operacional:</span> Redução drástica do tempo de resposta e ciclo de decisão.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Marquee / Final CTA (Persists at end) -->
+        <section class="scroll-section section-cta" data-enter="90" data-leave="100" data-animation="fade-up" data-persist="true">
+            <div class="marquee-wrap" data-scroll-speed="-15">
+                <div class="marquee-text">O GÊMEO DIGITAL PARA C-LEVELS &mdash; MAESTRO DO CAOS &mdash; </div>
+            </div>
+            <div class="cta-bottom">
+                <h2>FINALIZE O RUÍDO.</h2>
+                <button class="cta-button primary-cta">ATIVE SEU GÊMEO DIGITAL <span class="arrow">↗</span></button>
+            </div>
+        </section>
+
+        <!-- Invisible spacer for scrolling height -->
+        <div id="scroll-spacer" style="height: 1500vh; width: 100%;"></div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+/* -------------------------
+   VARIABLES
+   ------------------------- */
+:root {
+  --bg-dark: #000000;
+  --bg-dark-overlay: rgba(0, 0, 0, 0.9);
+  --text-on-dark: #fcfcfc;
+  --text-muted: #888888;
+  --accent: #e6b981; /* Muted luxury gold/sand */
+  
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Typography Scale */
+  --text-hero: clamp(3rem, 6vw, 6rem);
+  --text-h2: clamp(2rem, 4vw, 4rem);
+  --text-h3: clamp(1.2rem, 2vw, 1.8rem);
+  --text-body: clamp(1rem, 1.2vw, 1.25rem);
+  --text-label: 0.8rem;
+  --text-marquee: 12vw;
+  --text-stat: clamp(6rem, 12vw, 12rem);
+}
+
+/* -------------------------
+   RESET & BASE
+   ------------------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  background-color: var(--bg-dark);
+  color: var(--text-on-dark);
+  font-family: var(--font-body);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-dark);
+}
+
+/* -------------------------
+   LOADER
+   ------------------------- */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-dark);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: var(--text-on-dark);
+}
+
+.loader-brand {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+}
+
+#loader-bar-wrap {
+  width: 200px;
+  height: 2px;
+  background: #333;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+#loader-bar {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 0.1s ease;
+}
+
+#loader-percent {
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--text-muted);
+}
+
+/* -------------------------
+   HEADER
+   ------------------------- */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 2rem 4vw;
+  z-index: 100;
+  mix-blend-mode: difference;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.2rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.header-links a {
+  color: var(--text-on-dark);
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  text-transform: uppercase;
+  margin-left: 2rem;
+  letter-spacing: 0.1em;
+}
+
+.btn-outline {
+  border: 1px solid var(--text-muted);
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* -------------------------
+   CANVAS (RIGHT 2/3)
+   ------------------------- */
+.canvas-wrap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 66.666vw;
+  height: 100vh;
+  z-index: 0;
+  /* Circle wipe clip-path applied via JS */
+  clip-path: circle(0% at 50% 50%);
+  background-color: var(--bg-dark);
+}
+
+#canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Gradient edge to seamlessly blend the left content to the right canvas */
+.canvas-edge-blend {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15vw;
+  height: 100%;
+  background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+
+#dark-overlay {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-dark);
+  opacity: 0; /* JS driven */
+  pointer-events: none;
+}
+
+/* -------------------------
+   SCROLL LAYOUT (LEFT 1/3)
+   ------------------------- */
+#scroll-container {
+  position: relative;
+  width: 100%;
+  /* Page height determined by scroll spacer */
+  z-index: 10;
+}
+
+#scroll-spacer {
+  height: 1000vh; /* 10 sections * ~100vh */
+  width: 100%;
+}
+
+.scroll-section {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  pointer-events: none; /* Let scroll pass through */
+}
+
+/* Interactive elements in sections need pointer events */
+.section-inner, .cta-button, .btn-outline {
+  pointer-events: auto;
+}
+
+/* Text constrained to left 35% */
+.align-left {
+  padding-left: 5vw;
+}
+
+.align-left .section-inner {
+  max-width: 35vw;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* -------------------------
+   TYPOGRAPHY & ELEMENTS
+   ------------------------- */
+.section-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--text-label);
+  color: var(--accent);
+  letter-spacing: 0.2em;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+}
+
+.section-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  line-height: 1;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.section-subheading {
+  font-family: var(--font-body);
+  font-size: var(--text-h3);
+  font-weight: 400;
+  color: var(--text-on-dark);
+  margin-bottom: 1.5rem;
+}
+
+.section-body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  line-height: 1.6;
+  color: var(--text-muted);
+  font-weight: 300;
+}
+
+.system-note {
+  margin-top: 2rem;
+  padding: 1rem 1.5rem;
+  background: rgba(230, 185, 129, 0.05);
+  border-left: 2px solid var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--text-on-dark);
+  border-radius: 0 4px 4px 0;
+  display: flex;
+  gap: 0.75rem;
+}
+
+.system-note .note-icon {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* -------------------------
+   HERO SPECIFICS
+   ------------------------- */
+.hero-standalone {
+  background: var(--bg-dark); /* Solid bg for the wipe effect */
+  z-index: 20; /* Sits above canvas initially */
+}
+
+.hero-standalone .section-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  padding-top: 6rem; /* Prevent overlap with the fixed header */
+  padding-bottom: 5rem; /* Prevent overlap with the absolute scroll-indicator */
+  max-width: 85vw; /* Let the hero take up more horizontal space since video is hidden */
+}
+
+.hero-standalone .section-label {
+  margin-bottom: 0.5rem;
+}
+
+.hero-heading {
+  font-family: var(--font-display);
+  font-size: var(--text-hero);
+  line-height: 1.05;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.25em;
+  row-gap: 0.2em;
+}
+
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
+  line-height: 1.5;
+  color: var(--text-on-dark);
+  max-width: 60vw;
+  margin-bottom: 2rem;
+  font-weight: 400;
+}
+
+.cta-button {
+  background: var(--text-on-dark);
+  color: var(--bg-dark);
+  border: none;
+  padding: 1.25rem 2.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.cta-button:hover {
+  background: var(--accent);
+  transform: translateY(-2px);
+}
+
+.cta-button .arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.cta-button:hover .arrow {
+  transform: translate(4px, -4px);
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 5vw;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+}
+
+.scroll-indicator .line {
+  width: 60px;
+  height: 1px;
+  background: var(--text-muted);
+  position: relative;
+  overflow: hidden;
+}
+
+.scroll-indicator .line::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  animation: scroll-line 2s infinite ease-in-out;
+}
+
+@keyframes scroll-line {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* -------------------------
+   STATS SECTION
+   ------------------------- */
+.section-stats {
+  justify-content: center;
+  align-items: center;
+  z-index: 30; /* Over dark overlay */
+}
+
+.stats-container {
+  max-width: 60vw !important; /* Allow more width for stats list */
+  margin: 0 auto;
+}
+
+.stats-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.stats-list li {
+  font-family: var(--font-body);
+  font-size: clamp(1.2rem, 1.5vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--text-muted);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+  font-weight: 300;
+}
+
+.stats-list li:last-child {
+  border-bottom: none;
+}
+
+.stats-list .highlight {
+  color: var(--accent);
+  font-weight: 600;
+  margin-right: 0.5rem;
+}
+
+/* -------------------------
+   MARQUEE & BOTTOM CTA
+   ------------------------- */
+.section-cta {
+  justify-content: center;
+  align-items: center;
+  z-index: 30;
+}
+
+.marquee-wrap {
+  width: 100vw;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  margin-bottom: 5rem;
+  left: -5vw; /* Offset to full width since section is absolute */
+}
+
+.marquee-text {
+  font-family: var(--font-display);
+  font-size: var(--text-marquee);
+  font-weight: 800;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-on-dark);
+  text-transform: uppercase;
+  line-height: 1;
+  display: inline-block;
+  will-change: transform;
+}
+
+.cta-bottom {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cta-bottom h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+}
+
+/* -------------------------
+   RESPONSIVE (MOBILE)
+   ------------------------- */
+@media (max-width: 768px) {
+  .canvas-wrap {
+    width: 100vw;
+  }
+  .canvas-edge-blend {
+    display: none;
+  }
+  .align-left {
+    padding: 0 5vw;
+    align-items: center;
+    text-align: center;
+  }
+  .align-left .section-inner {
+    max-width: 100%;
+    background: rgba(0,0,0,0.7);
+    padding: 2rem;
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+  }
+  .hero-tagline {
+    max-width: 100%;
+  }
+  .hero-heading {
+    justify-content: center;
+  }
+  .stats-container {
+    max-width: 100% !important;
+    padding: 0;
+  }
+}
